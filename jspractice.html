@@ -5,6 +5,7 @@ What I have learned:
 1. Data types in javascript are: undefined, null, boolean, string, symbol, number, and object
 2. There are three ways to declare a variable: var, let, and const
     - If you don't use any keywords when initializing a variable, it will be global!!
+    - let doesn't allow you to declare a variable twice
 3. Putting semicolons when lines end is not requireded, but it's a good practice
 4. You can include "" in your string without having to type \ if you use '' to form the string. To include both '' and "", use ``
 5. Strings are immutable :( you can't change letters by accessing their index place
@@ -12,7 +13,16 @@ What I have learned:
     - You CAN modify elements through their indeces with arrays, unlike with strings
 7. You can use arrayName.shift() to remove and return the first element (like pop())
     - arrayName.unshift() adds something to the beginning of an array
-1:03:42
+8. There is a strinct equality operator ===, which also checks for the type equality 
+    - Ex 3 == '3' is true, while 3 === '3' is false
+9. Objects are basically dictionaries
+    - You can use dot notation (obj.key) or bracket notation (obj[key]). 
+        - When there is a space in your key name, you need to use bracket notation
+    - You can also use dot notation to change the object values
+    - Remove elements with the keyword "delete"
+    - Check if an object has a key with obj.hasOwnProperty(key)
+10. You can use the || operator to assign a value if what you're looking for doesn't exist alredy
+11. You can have multiple ternary operators (ex, return num > 0 ? "positive" : num < 0 ? "negative" : "zero")
 */
 
 <script>
