@@ -2,27 +2,72 @@
 Tutorial https://www.youtube.com/watch?v=PkZNo7MFNFg 
 
 What I have learned:
-1. Data types in javascript are: undefined, null, boolean, string, symbol, number, and object
+1. Data types in javascript are: undefined, null, boolean, string, symb-
+   ol, number, and object
 2. There are three ways to declare a variable: var, let, and const
-    - If you don't use any keywords when initializing a variable, it will be global!!
+    - If you don't use any keywords when initializing a variable, it
+      will be global!!
     - let doesn't allow you to declare a variable twice
-3. Putting semicolons when lines end is not requireded, but it's a good practice
-4. You can include "" in your string without having to type \ if you use '' to form the string. To include both '' and "", use ``
-5. Strings are immutable :( you can't change letters by accessing their index place
+    - If you assign an array to a const, you can still change the elem-
+      ents in the array through their indeces 
+        - You have to do Object.freeze(constName)
+3. Putting semicolons when lines end is not requireded, but it's a good 
+   practice
+4. You can include "" in your string without having to type \ if you
+   use '' to form the string. To include both '' and "", use ``
+5. Strings are immutable :( you can't change letters by accessing their
+   index place
 6. Elements in arrays can be any data type (mixed, like Python)
-    - You CAN modify elements through their indeces with arrays, unlike with strings
-7. You can use arrayName.shift() to remove and return the first element (like pop())
+    - You CAN modify elements through their indeces with arrays, unlike
+      with strings
+7. You can use arrayName.shift() to remove and return the first element
+   (like pop())
     - arrayName.unshift() adds something to the beginning of an array
-8. There is a strinct equality operator ===, which also checks for the type equality 
+8. There is a strinct equality operator ===, which also checks for the
+   type equality 
     - Ex 3 == '3' is true, while 3 === '3' is false
 9. Objects are basically dictionaries
-    - You can use dot notation (obj.key) or bracket notation (obj[key]). 
-        - When there is a space in your key name, you need to use bracket notation
+    - You can use dot notation (obj.key) or bracket notation (obj[key])
+        - When there is a space in your key name, you need to use brac-
+          ket notation
     - You can also use dot notation to change the object values
     - Remove elements with the keyword "delete"
     - Check if an object has a key with obj.hasOwnProperty(key)
-10. You can use the || operator to assign a value if what you're looking for doesn't exist alredy
-11. You can have multiple ternary operators (ex, return num > 0 ? "positive" : num < 0 ? "negative" : "zero")
+10. You can use the || operator to assign a value if what you're looki-
+    ng for doesn't exist alredy
+11. You can have multiple ternary operators
+    - ex: return num > 0 ? "positive" : num < 0 ? "negative" : "zero"
+12. Lambda function syntax: var res = (param1, param2) => new Obj(param1, param2)
+    - A good indication of when to use them is if a function takes ano-
+      ther function as a parameter
+    - If you're just passing in one parameter, you don't need the pare-
+      nthesis
+13. Rest operator ... makes it so that arguments passed into a function
+    are converted into an array 
+    - Only works this way if it's in the parameters of a function!
+14. Spread operator ... makes a copy of the elements in an array
+    - Useful for assigning existing array variables to other variables. 
+      Setting arr2 = arr1, for example, would make it so that whenever
+      you modify arr1, arr2 will also change
+    - Ex. arr2 = [...arr1]
+15. Destructuring assignment: for when you want to assign elements in
+    an object/array to a variable
+    - Syntax obj ex.:
+        var voxel = {x : 3.6, y : 7.4, z : 6.54};
+        const {x : a, y : b, z : c} = voxel;  // a = 3.6, b = 7.4, c = 6.54
+    - Syntax arr ex.:
+        const [z, x, , y] = [1, 2, 3, 4, 5, 6]; 
+        console.log(z, x, y)  // output: 1 2 4
+16. Template literals: allow you to plug in code elements directly into
+    a string 
+    - Ex.
+        const person = {
+            name: "Pee Sanchez"
+            age: 38
+        };
+
+        const greeting = `Hello, my name is ${person.name}!
+        I am ${person.age} years old.`  // Notice it's multi-line
 */
 
 <script>
