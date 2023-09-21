@@ -1,4 +1,4 @@
-/*
+JAVASCRIPT:
 Tutorial https://www.youtube.com/watch?v=PkZNo7MFNFg 
 
 What I have learned:
@@ -68,8 +68,11 @@ What I have learned:
 
         const greeting = `Hello, my name is ${person.name}!
         I am ${person.age} years old.`  // Notice it's multi-line
-*/
 
-<script>
-    console.log("Hello World!")
-</script>
+
+EXTENSION:
+Tutorial: https://www.youtube.com/watch?v=0n809nd4Zu4
+
+1. Every extension is going to have a manifest.json file. These are very important.
+    - Contents
+        -   
