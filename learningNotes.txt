@@ -75,4 +75,5 @@ Tutorial: https://www.youtube.com/watch?v=0n809nd4Zu4
 
 1. Every extension is going to have a manifest.json file. These are very important.
     - Contents
-        -   
+        - Service worker: new in Manifest V3. They are files that run separately from the main browser thread (cannot access contents of a webpage)
+        - Default popup: defines what file will work as UI
