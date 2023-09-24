@@ -3,6 +3,7 @@
     let currentVideo = "";
     let currentVideoBookmarks = [];
 
+    // Listens to messages sent by background.js
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
         const { type, value, videoId } = obj;
 
@@ -13,9 +14,9 @@
     });
 
     const newVideoLoaded = () => {
-        const bookmarkBtnExists = document.getElementsByClassName("bookmark-btn")[0];
-        console.log(bookmarkBtnExists);
+        const bookmarkBtnExists = document.getElementsByClassName("bookmark-btn")[0];  // Gets the first element that matches "bookmark-btn"
 
+        // If a bookmark button does not exist on the web page, create an image element for the bookmark buttons
         if (!bookmarkBtnExists) {
             const bookmarkBtn = document.createElement("img");
 
