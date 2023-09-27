@@ -13,16 +13,20 @@
         }
     });
 
+    // Fetch all bookmarks once a video is loaded
     const fetchBookmarks = () => {
         return new Promise((resolve) => {
             chrome.storage.sync.get([currentVideo], (obj) => {
+                // Look in storage to see if the video has any bookmarks
+                // If it does, stringify it. Otherwise, return an empty array
                 resolve.apply(obj[currentVideo] ? JSON.parse(obj[currentVideo]): []);
             })
         })
     }
 
-    const newVideoLoaded = () => {
+    const newVideoLoaded = async () => {
         const bookmarkBtnExists = document.getElementsByClassName("bookmark-btn")[0];  // Gets the first element that matches "bookmark-btn"
+        currentVideoBookmarks = await fetchBookmarks();  // resolve fetchBookmarks promise
 
         // If a bookmark button does not exist on the web page, create an image element for the bookmark buttons
         if (!bookmarkBtnExists) {
@@ -41,13 +45,15 @@
         }
     }
 
-    const addNewBookmarkEventHandler = () => {
+    const addNewBookmarkEventHandler = async () => {
         const currentTime = youtubePlayer.currentTime;  // Variable that keeps video time in the YouTube website
         const newBookmark = {
             time: currentTime,
             desc: "Bookmark at " + getTime(currentTime),
         };
-        console.log(newBookmark);
+        
+        
+        currentVideoBookmarks = await fetchBookmarks();  // Ensure you always use most up-to-date bookmarks
 
         // Maps back to a set of bookmarks in chrome storage
         chrome.storage.sync.set({
@@ -61,7 +67,7 @@
 // Converts the seconds from currentTime into a readable format for the computer
 const getTime = t => {
     var date = new Date(0);
-    date.setSeconds(1);
+    date.setSeconds(t);
 
-    return date.toISOString().substr(11, 0);
+    return date.toISOString().substring(19, 11);  // For some reason, this only worked if the numbers were backwards
 }
