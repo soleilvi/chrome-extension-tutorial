@@ -84,3 +84,4 @@ Tutorial: https://www.youtube.com/watch?v=0n809nd4Zu4
 3. You can use the console in the "inspect element" section for finding
    out the class names for objects in a website
 4. What does it mean for a function to be asynchronous?
+5. When would you want to export a function? (like in utils.js)
