@@ -85,3 +85,8 @@ Tutorial: https://www.youtube.com/watch?v=0n809nd4Zu4
    out the class names for objects in a website
 4. What does it mean for a function to be asynchronous?
 5. When would you want to export a function? (like in utils.js)
+6. When is it necessary to use JSON.parse as opposed to just a string?
+7. Why does the if-statement in popup.js need to check for both sectio-
+   ns of the URL?
+8. Wtf is happening with the chrome.storage.sync.set and get processes
+   in contentScript.js?
