@@ -22,10 +22,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (activeTab.url.includes("youtube.com/watch") && currentVideo) {
         chrome.storage.sync.get([currentVideo], (data) => {
-            const currentVideoBookmarks = data[currentVideo] ? JSON.parse(data[currentVideo]): [];
+            // currentVideoBookmarks contains all JSON-ified videos
+            const currentVideoBookmarks = data[currentVideo] ? JSON.parse(data[currentVideo]): [];  // If there are no bookmarks, return empty array
+
+            // videoBookmarks
         })
     }
+    // Show this is not a YouTube video page
     else {
-
+        const container = document.getElementsByClassName("container")[0];
+        container.innerHTML = '<div class = "title"> This is not a YouTube video page.</div>';
     }
 });
