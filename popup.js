@@ -3,7 +3,20 @@ import {getActiveTabURL} from "./utils.js";
 // adding a new bookmark row to the popup
 const addNewBookmark = () => {};
 
-const viewBookmarks = () => {};
+// logic for UI
+const viewBookmarks = (currentBookmarks = []) => {
+    const bookmarksElement = document.getElementById("bookmarks");
+    bookmarksElement.innerHTML = "";  // If there are no bookmarks, don't display anything
+
+    if (currentBookmarks.length > 0) {
+        for (let i = 0; i < currentBookmarks.length; i++) {
+            const bookmark = currentBookmarks[i];
+            addNewBookmark(bookmarksElement, bookmark);
+        }
+    } else {
+        bookmarksElement.innerHTML = '<i class="row">No bookmarks to show</i>';
+    }
+};
 
 const onPlay = e => {};
 
@@ -25,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             // currentVideoBookmarks contains all JSON-ified videos
             const currentVideoBookmarks = data[currentVideo] ? JSON.parse(data[currentVideo]): [];  // If there are no bookmarks, return empty array
 
-            // videoBookmarks
+            viewBookmarks(currentVideoBookmarks);
         })
     }
     // Show this is not a YouTube video page
