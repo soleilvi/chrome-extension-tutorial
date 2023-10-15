@@ -1,7 +1,17 @@
 import {getActiveTabURL} from "./utils.js";
 
-// adding a new bookmark row to the popup
-const addNewBookmark = () => {};
+// Adding a new bookmark row to the popup (allows us to see bookmarks)
+const addNewBookmark = (bookmarksElement, bookmark) => {
+    const bookmarkTitleElement = document.createElement("div");
+    const newBookmarkElement = document.createElement("div"); // Encapsulates all elements in bookmark row
+
+    bookmarkTitleElement.textContent = bookmark.desc;  // Setting the bookmark's content to the timestamp text we made in addNewBookmarkEventHandler()
+    bookmarkTitleElement.className = "bookmark-title";
+
+    newBookmarkElement.id = "bookmark-" + bookmark.time;  // Guarantees a unique ID for each row element
+    newBookmarkElement.className = "bookmark";
+    newBookmarkElement.setAttribute("timestamp", bookmark.time);
+};
 
 // logic for UI
 const viewBookmarks = (currentBookmarks = []) => {
@@ -24,7 +34,7 @@ const onDelete = e => {};
 
 const setBookmarkAttributes =  () => {};
 
-// native window event that is triggerd when you load an HTML document (when we want to show bookmarks)
+// Native window event that is triggerd when you load an HTML document (when we want to show bookmarks)
 document.addEventListener("DOMContentLoaded", async () => {
     const activeTab = await getActiveTabURL();
 
