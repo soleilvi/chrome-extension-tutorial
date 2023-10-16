@@ -3,7 +3,7 @@ import {getActiveTabURL} from "./utils.js";
 // Adding a new bookmark row to the popup (allows us to see bookmarks)
 const addNewBookmark = (bookmarksElement, bookmark) => {
     const bookmarkTitleElement = document.createElement("div");
-    const newBookmarkElement = document.createElement("div"); // Encapsulates all elements in bookmark row
+    const newBookmarkElement = document.createElement("div");  // Encapsulates all elements in bookmark row
 
     bookmarkTitleElement.textContent = bookmark.desc;  // Setting the bookmark's content to the timestamp text we made in addNewBookmarkEventHandler()
     bookmarkTitleElement.className = "bookmark-title";
@@ -11,6 +11,12 @@ const addNewBookmark = (bookmarksElement, bookmark) => {
     newBookmarkElement.id = "bookmark-" + bookmark.time;  // Guarantees a unique ID for each row element
     newBookmarkElement.className = "bookmark";
     newBookmarkElement.setAttribute("timestamp", bookmark.time);
+
+    // Encapsulating elements by appending them
+    newBookmarkElement.appendChild(bookmarkTitleElement);
+    bookmarksElement.appendChild(newBookmarkElement);
+
+    console.log("pee");
 };
 
 // logic for UI
