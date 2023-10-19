@@ -19,13 +19,14 @@
             chrome.storage.sync.get([currentVideo], (obj) => {
                 // Look in storage to see if the video has any bookmarks
                 // If it does, stringify it. Otherwise, return an empty array
-                resolve.apply(obj[currentVideo] ? JSON.parse(obj[currentVideo]): []);
-            })
-        })
-    }
+                resolve(obj[currentVideo] ? JSON.parse(obj[currentVideo]) : []);
+            });
+        });
+    };
 
     const newVideoLoaded = async () => {
         const bookmarkBtnExists = document.getElementsByClassName("bookmark-btn")[0];  // Gets the first element that matches "bookmark-btn"
+        
         currentVideoBookmarks = await fetchBookmarks();  // resolve fetchBookmarks promise
 
         // If a bookmark button does not exist on the web page, create an image element for the bookmark buttons
@@ -43,7 +44,7 @@
             youtubeLeftControls.append(bookmarkBtn);
             bookmarkBtn.addEventListener("click", addNewBookmarkEventHandler);
         }
-    }
+    };
 
     const addNewBookmarkEventHandler = async () => {
         const currentTime = youtubePlayer.currentTime;  // Variable that keeps video time in the YouTube website
@@ -52,14 +53,13 @@
             desc: "Bookmark at " + getTime(currentTime),
         };
         
-        
         currentVideoBookmarks = await fetchBookmarks();  // Ensure you always use most up-to-date bookmarks
 
         // Maps back to a set of bookmarks in chrome storage
         chrome.storage.sync.set({
             [currentVideo]: JSON.stringify([...currentVideoBookmarks, newBookmark].sort((a, b) => a.time - b.time))  // The sort makes it so that the bookmarks are ordered by time
         });
-    }
+    };
 
     newVideoLoaded();  // Fix for button not showing up if you refresh your video page
 })();
@@ -70,4 +70,4 @@ const getTime = t => {
     date.setSeconds(t);
 
     return date.toISOString().substring(19, 11);  // For some reason, this only worked if the numbers were backwards
-}
+};
