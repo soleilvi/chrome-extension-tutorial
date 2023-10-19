@@ -4,19 +4,23 @@ import {getActiveTabURL} from "./utils.js";
 const addNewBookmark = (bookmarksElement, bookmark) => {
     const bookmarkTitleElement = document.createElement("div");
     const newBookmarkElement = document.createElement("div");  // Encapsulates all elements in bookmark row
+    const controlsElement = document.createElement("div");  // For play button
 
     bookmarkTitleElement.textContent = bookmark.desc;  // Setting the bookmark's content to the timestamp text we made in addNewBookmarkEventHandler()
     bookmarkTitleElement.className = "bookmark-title";
+
+    controlsElement.className = "bookmark-controls";
 
     newBookmarkElement.id = "bookmark-" + bookmark.time;  // Guarantees a unique ID for each row element
     newBookmarkElement.className = "bookmark";
     newBookmarkElement.setAttribute("timestamp", bookmark.time);
 
+    setBookmarkAttributes("play", onPlay, controlsElement);
+
     // Encapsulating elements by appending them
     newBookmarkElement.appendChild(bookmarkTitleElement);
+    newBookmarkElement.appendChild(controlsElement);
     bookmarksElement.appendChild(newBookmarkElement);
-
-    console.log("pee");
 };
 
 // logic for UI
@@ -38,7 +42,14 @@ const onPlay = e => {};
 
 const onDelete = e => {};
 
-const setBookmarkAttributes =  () => {};
+const setBookmarkAttributes = (src, eventListener, controlParentElement) => {  // src is the type of button created (play, delete, ect.)
+    const controlElement = doument.createElement("img");  // This one control element can be any image (?)
+
+    controlElement.src = "assets/" + src + ".png";
+    controlElement.title = src;
+    controlElement.addEventListener("click", eventListener);
+    controlParentElement.appendChild(controlElement);
+}; 
 
 // Native window event that is triggerd when you load an HTML document (when we want to show bookmarks)
 document.addEventListener("DOMContentLoaded", async () => {
