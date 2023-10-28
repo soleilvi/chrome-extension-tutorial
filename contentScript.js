@@ -15,6 +15,7 @@
 
     // Fetch all bookmarks once a video is loaded
     const fetchBookmarks = () => {
+        console.log("fetch bookmarks")
         return new Promise((resolve) => {
             chrome.storage.sync.get([currentVideo], (obj) => {
                 // Look in storage to see if the video has any bookmarks
@@ -25,6 +26,7 @@
     };
 
     const newVideoLoaded = async () => {
+        console.log("new video loaded")
         const bookmarkBtnExists = document.getElementsByClassName("bookmark-btn")[0];  // Gets the first element that matches "bookmark-btn"
         
         currentVideoBookmarks = await fetchBookmarks();  // resolve fetchBookmarks promise

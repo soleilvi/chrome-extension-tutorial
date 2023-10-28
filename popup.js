@@ -2,6 +2,8 @@ import {getActiveTabURL} from "./utils.js";
 
 // Adding a new bookmark row to the popup (allows us to see bookmarks)
 const addNewBookmark = (bookmarksElement, bookmark) => {
+    console.log("Add New Bookmark")
+
     const bookmarkTitleElement = document.createElement("div");
     const newBookmarkElement = document.createElement("div");  // Encapsulates all elements in bookmark row
     const controlsElement = document.createElement("div");  // For play button
@@ -25,6 +27,7 @@ const addNewBookmark = (bookmarksElement, bookmark) => {
 
 // logic for UI
 const viewBookmarks = (currentBookmarks = []) => {
+    console.log("VIEW BOOKMARKS")
     const bookmarksElement = document.getElementById("bookmarks");
     bookmarksElement.innerHTML = "";  // If there are no bookmarks, don't display anything
 
@@ -36,6 +39,8 @@ const viewBookmarks = (currentBookmarks = []) => {
     } else {
         bookmarksElement.innerHTML = '<i class="row">No bookmarks to show</i>';
     }
+
+    return;
 };
 
 const onPlay = e => {};
@@ -43,6 +48,8 @@ const onPlay = e => {};
 const onDelete = e => {};
 
 const setBookmarkAttributes = (src, eventListener, controlParentElement) => {  // src is the type of button created (play, delete, ect.)
+    console.log("Set Bookmark Attributes")
+    
     const controlElement = doument.createElement("img");  // This one control element can be any image (?)
 
     controlElement.src = "assets/" + src + ".png";
@@ -59,6 +66,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     const queryParameters = activeTab.url.split("?")[1];
     const urlParameters = new URLSearchParams(queryParameters);
     const currentVideo = urlParameters.get("v");
+
+    // UGH
+    const pee = document.getElementsByClassName("pee")[0];
+    pee.innerHTML = '<div class = "title"> Dumb.</div>';
 
     if (activeTab.url.includes("youtube.com/watch") && currentVideo) {
         chrome.storage.sync.get([currentVideo], (data) => {
