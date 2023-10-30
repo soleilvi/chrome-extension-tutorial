@@ -2,8 +2,6 @@ import {getActiveTabURL} from "./utils.js";
 
 // Adding a new bookmark row to the popup (allows us to see bookmarks)
 const addNewBookmark = (bookmarksElement, bookmark) => {
-    console.log("Add New Bookmark")
-
     const bookmarkTitleElement = document.createElement("div");
     const newBookmarkElement = document.createElement("div");  // Encapsulates all elements in bookmark row
     const controlsElement = document.createElement("div");  // For play button
@@ -32,6 +30,10 @@ const viewBookmarks = (currentBookmarks = []) => {
     bookmarksElement.innerHTML = "";  // If there are no bookmarks, don't display anything
 
     if (currentBookmarks.length > 0) {
+        // UGH
+        const pee = document.getElementsByClassName("container")[0];
+        pee.innerHTML = '<div class = "title">Here are your bookmarks:</div>';
+
         for (let i = 0; i < currentBookmarks.length; i++) {
             const bookmark = currentBookmarks[i];
             addNewBookmark(bookmarksElement, bookmark);
@@ -67,14 +69,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     const urlParameters = new URLSearchParams(queryParameters);
     const currentVideo = urlParameters.get("v");
 
-    // UGH
-    const pee = document.getElementsByClassName("pee")[0];
-    pee.innerHTML = '<div class = "title"> Dumb.</div>';
-
     if (activeTab.url.includes("youtube.com/watch") && currentVideo) {
         chrome.storage.sync.get([currentVideo], (data) => {
             // currentVideoBookmarks contains all JSON-ified videos
-            const currentVideoBookmarks = data[currentVideo] ? JSON.parse(data[currentVideo]): [];  // If there are no bookmarks, return empty array
+            const currentVideoBookmarks = data[currentVideo] ? JSON.parse(data[currentVideo]) : [];  // If there are no bookmarks, return empty array
 
             viewBookmarks(currentVideoBookmarks);
         })

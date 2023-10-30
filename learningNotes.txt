@@ -90,3 +90,9 @@ Tutorial: https://www.youtube.com/watch?v=0n809nd4Zu4
    ns of the URL?
 8. Wtf is happening with the chrome.storage.sync.set and get processes
    in contentScript.js?
+
+
+Debug notes:
+- Correctly goes into the if-statement in popup.js' document.addEventListener() function when you have a YouTube video open.
+- Correctly identifies that there are bookmarks in viewBookmarks' if-statement
+- Bug is probably in addNewBookmark
