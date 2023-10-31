@@ -96,3 +96,4 @@ Debug notes:
 - Correctly goes into the if-statement in popup.js' document.addEventListener() function when you have a YouTube video open.
 - Correctly identifies that there are bookmarks in viewBookmarks' if-statement
 - Bug is probably in addNewBookmark
+- Bug may also be related to the bookmarksElement in viewBookmarks that doesn't seem to display anything >:(
