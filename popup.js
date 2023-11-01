@@ -4,41 +4,33 @@ import {getActiveTabURL} from "./utils.js";
 const addNewBookmark = (bookmarksElement, bookmark) => {
     const bookmarkTitleElement = document.createElement("div");
     const newBookmarkElement = document.createElement("div");  // Encapsulates all elements in bookmark row
-    // const controlsElement = document.createElement("div");  // For play button
+    const controlsElement = document.createElement("div");  // For play button
 
     bookmarkTitleElement.textContent = bookmark.desc;  // Setting the bookmark's content to the timestamp text we made in addNewBookmarkEventHandler()
     bookmarkTitleElement.className = "bookmark-title";
 
-    // controlsElement.className = "bookmark-controls";
+    controlsElement.className = "bookmark-controls";
 
     newBookmarkElement.id = "bookmark-" + bookmark.time;  // Guarantees a unique ID for each row element
     newBookmarkElement.className = "bookmark";
     newBookmarkElement.setAttribute("timestamp", bookmark.time);
 
-    // setBookmarkAttributes("play", onPlay, controlsElement);
+    setBookmarkAttributes("play", onPlay, controlsElement);
 
     // Encapsulating elements by appending them
     newBookmarkElement.appendChild(bookmarkTitleElement);
     newBookmarkElement.appendChild(controlsElement);
-
-    // const pee = document.getElementsByClassName("container")[0];
-    // pee.innerHTML = newBookmarkElement;
-
     bookmarksElement.appendChild(newBookmarkElement);
 };
 
 // logic for UI
 const viewBookmarks = (currentBookmarks = []) => {
     const bookmarksElement = document.getElementById("bookmarks");
+    // bookmarksElement.innerHTML = '<div class = "bookmarks">Pee</div>';
 
     if (currentBookmarks.length > 0) {
-        // UGH
-        const pee = document.getElementsByClassName("container")[0];
-        pee.innerHTML = currentBookmarks.length;  // '<div class = "title">Here are your bookmarks:</div>';
-
         for (let i = 0; i < currentBookmarks.length; i++) {
             const bookmark = currentBookmarks[i];
-            pee.innerHTML = bookmark.desc;
             addNewBookmark(bookmarksElement, bookmark);
         }
     } else {
