@@ -97,3 +97,4 @@ Debug notes:
 - Correctly identifies that there are bookmarks in viewBookmarks' if-statement
 - Bug is probably in addNewBookmark
 - Bug is most likely happening when appending the children to bookmarksElement in addNewBookmark
+- It was actually all just because of a damn typo in setBookmarkAttributes :(

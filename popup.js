@@ -26,7 +26,6 @@ const addNewBookmark = (bookmarksElement, bookmark) => {
 // logic for UI
 const viewBookmarks = (currentBookmarks = []) => {
     const bookmarksElement = document.getElementById("bookmarks");
-    // bookmarksElement.innerHTML = '<div class = "bookmarks">Pee</div>';
 
     if (currentBookmarks.length > 0) {
         for (let i = 0; i < currentBookmarks.length; i++) {
@@ -45,11 +44,12 @@ const onPlay = e => {};
 const onDelete = e => {};
 
 const setBookmarkAttributes = (src, eventListener, controlParentElement) => {  // src is the type of button created (play, delete, ect.)
-    const controlElement = doument.createElement("img");  // This one control element can be any image (?)
-
+    const controlElement = document.createElement("img");  // This one control element can be any image (?)
+    
     controlElement.src = "assets/" + src + ".png";
     controlElement.title = src;
     controlElement.addEventListener("click", eventListener);
+
     controlParentElement.appendChild(controlElement);
 }; 
 
