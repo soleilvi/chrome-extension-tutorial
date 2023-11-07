@@ -10,6 +10,8 @@
         if (type === "NEW") {
             currentVideo = videoId;
             newVideoLoaded();
+        } else if (type === "PLAY") {
+            youtubePlayer.currentTime = value;  // Sets our timestamp in the video to the one in the bookmark
         }
     });
 

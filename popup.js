@@ -39,9 +39,18 @@ const viewBookmarks = (currentBookmarks = []) => {
     return;
 };
 
-const onPlay = e => {};
+const onPlay = async event => {
+    const bookmarkTime = event.target.parentNode.parentNode.getAttribute("timestamp");
+    const activeTab = await getActiveTabURL();
 
-const onDelete = e => {};
+    // Send message to contentScript
+    chrome.tabs.sendMessage(activeTab.id, {
+        type: "PLAY",
+        value: bookmarkTime
+    })
+};
+
+const onDelete = event => {};
 
 const setBookmarkAttributes = (src, eventListener, controlParentElement) => {  // src is the type of button created (play, delete, ect.)
     const controlElement = document.createElement("img");  // This one control element can be any image (?)
