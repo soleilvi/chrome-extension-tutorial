@@ -16,6 +16,7 @@ const addNewBookmark = (bookmarksElement, bookmark) => {
     newBookmarkElement.setAttribute("timestamp", bookmark.time);
 
     setBookmarkAttributes("play", onPlay, controlsElement);
+    setBookmarkAttributes("delete", onDelete, controlsElement);
 
     // Encapsulating elements by appending them
     newBookmarkElement.appendChild(bookmarkTitleElement);
@@ -50,7 +51,18 @@ const onPlay = async event => {
     })
 };
 
-const onDelete = event => {};
+const onDelete = async event => {
+    const activeTab = await getActiveTabURL();
+    const bookmarkTime = event.target.parentNode.parentNode.getAttribute("timestamp");
+    const bookmarkToDelete = document.getElementById("bookmark-" + bookmarkTime);
+
+    bookmarkToDelete.parentNode.removeChild(bookmarkToDelete);
+
+    chrome.tabs.sendMessage(activeTab.id, {
+        type: "DELETE",
+        value: bookmarkTime,
+    }, viewBookmarks);  // callback function, refreshes bookmarks so that changes are immediate
+};
 
 const setBookmarkAttributes = (src, eventListener, controlParentElement) => {  // src is the type of button created (play, delete, ect.)
     const controlElement = document.createElement("img");  // This one control element can be any image (?)

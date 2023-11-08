@@ -12,6 +12,11 @@
             newVideoLoaded();
         } else if (type === "PLAY") {
             youtubePlayer.currentTime = value;  // Sets our timestamp in the video to the one in the bookmark
+        } else if (type === "DELETE") {
+            currentVideoBookmarks = currentVideoBookmarks.filter((b) => b.time != value);  // New currentVideoBookmarks should not have the bookmark with the timestamp passed in anymore
+            chrome.storage.sync.set({ [currentVideo]: JSON.stringify(currentVideoBookmarks) });  // If you refresh the page, you shouldn't see the bookmark anymore
+      
+            response(currentVideoBookmarks);  // Sends the updated bookmarks back to popup.js for display
         }
     });
 
